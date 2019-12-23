@@ -1,0 +1,45 @@
+pre[class*=language-] {
+  position: relative;
+  padding-left: 3.8em;
+  counter-reset: linenumber
+}
+
+.line-numbers-rows {
+  float: left;
+  margin-right: 8px;
+  pointer-events: none;
+  top: 0;
+  font-size: 100%;
+  width: 1em;
+  letter-spacing: -1px;
+  border-right: 1px solid #999;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none
+}
+
+.line-numbers-rows>span {
+  pointer-events: none;
+  display: block;
+  counter-increment: linenumber
+}
+
+.line-numbers-rows>span:before {
+  content: counter(linenumber);
+  color: #999;
+  display: block;
+  padding-right: .8em;
+  text-align: right
+}
+
+.el-container header{
+  background-color: #545c64;
+  color: #fff;
+  border-bottom: 1px #fff solid;
+  vertical-align: middle;
+}
+
+input[readonly],textarea[readonly] {
+  background-color: #dcdfe6;
+}
