@@ -1,21 +1,14 @@
-# mainsys
-
-> A Vue.js project
-
-## Build Setup
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+# 概述
+这是一个构建自身博客网站项目
+# 需求
+该网站将提供：
+- 动态路由
+- 博文展示
+- 快速检索
+- 小工具集成
+# 设计
+## 系统拓扑图
+## 系统应用架构图
+![系统应用架构图](./docs/系统应用架构图.png)
+## 系统技术架构图
+![系统技术架构图](./docs/系统技术架构图.png)

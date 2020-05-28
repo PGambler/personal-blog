@@ -1,18 +1,18 @@
 <template>
-  <div id="login" v-bind:style="{ height: wHeight + 'px' }">
+  <div id="login"
+       v-bind:style="{ height: wHeight + 'px' }">
     <table>
       <tr v-bind:style="{ height: wHeight/3 + 'px' }">
         <td style="width: 33%"></td>
         <td style="width: 33%;min-width: 300px;"></td>
         <td style="width: 33%"></td>
       </tr>
-      <tr v-bind:style="{ height: wHeight/3 + 'px' }">
-      </tr>
+      <tr v-bind:style="{ height: wHeight/3 + 'px' }"></tr>
       <tr v-bind:style="{ height: wHeight/3 + 'px' }">
         <td></td>
         <td>
           <el-row v-bind:style="{bottom: -(wHeight/6 - 40) + 'px'}">
-            <p>Copyright © 2019-2020 TCM</p>
+            <p>Copyright © 2020 TCM</p>
           </el-row>
         </td>
         <td></td>
@@ -23,7 +23,7 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       wHeight: window.innerHeight,
       form: {
@@ -34,8 +34,8 @@ export default {
     };
   },
   methods: {
-    onSubmit() {
-      this.$router.push({path: '/home'})
+    onSubmit () {
+      this.$router.push({ path: "/home" });
     }
   }
 };
@@ -54,6 +54,6 @@ export default {
   width: 100%;
 }
 #btnTool .el-form-item__content {
-  margin-left: 0px !important
+  margin-left: 0px !important;
 }
 </style>

@@ -40,6 +40,6 @@ pre[class*=language-] {
   vertical-align: middle;
 }
 
-input[readonly],textarea[readonly] {
+textarea[readonly] {
   background-color: #dcdfe6;
 }

@@ -1,6 +1,9 @@
 <template>
-  <el-tabs type="border-card" v-model="activeName" @tab-click="handleClick">
-    <el-tab-pane label="名称转换" name="first">
+  <el-tabs type="border-card"
+           v-model="activeName"
+           @tab-click="handleClick">
+    <el-tab-pane label="名称转换"
+                 name="first">
       <HumpLineTransfer />
     </el-tab-pane>
   </el-tabs>
@@ -8,13 +11,13 @@
 <script>
 import HumpLineTransfer from "@/components/tool/HumpLineTransfer";
 export default {
-  data() {
+  data () {
     return {
       activeName: "first"
     };
   },
   methods: {
-    handleClick(tab, event) {
+    handleClick (tab, event) {
       console.log(tab, event);
     }
   },

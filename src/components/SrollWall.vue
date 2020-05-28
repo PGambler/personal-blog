@@ -1,9 +1,12 @@
 <template>
   <div>
-    <div class="block" style="background-color: #ccc;">
+    <div class="block"
+         style="background-color: #ccc;">
       <el-carousel v-bind:height="wallHeight">
-        <el-carousel-item v-for="item in imgs" :key="item">
-          <img :src="item" v-bind:style="{width: wallWidth}" />
+        <el-carousel-item v-for="item in imgs"
+                          :key="item">
+          <img :src="item"
+               v-bind:style="{width: wallWidth}" />
         </el-carousel-item>
       </el-carousel>
     </div>
@@ -19,7 +22,7 @@ const images = require
   });
 export default {
   props: ["catalog", "width", "height"],
-  data() {
+  data () {
     let catalog = this.catalog || "";
     let exp = new RegExp("/" + catalog + "/");
     return {

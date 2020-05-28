@@ -6,12 +6,13 @@ import "highlight.js/styles/tomorrow-night.css"
  */
 let Highlight = {}
 const MAX_HEIGHT = "180px";
-Highlight.install = function(Vue) {
+Highlight.install = function (Vue) {
   // 被绑定元素插入父节点时调用
   Vue.directive("highlight", {
-    inserted: function(el) {
+    inserted: function (el) {
       let blocks = el.querySelectorAll("pre code");
       for (let i = 0; i < blocks.length; i++) {
+        if ($(blocks[i]).find(".line-numbers-rows").length) continue;
         hljs.highlightBlock(blocks[i]);
         blocks[i].style.maxHeight = MAX_HEIGHT;
         let lines = $(blocks[i]).text().split("\n").length - 1;
@@ -26,9 +27,10 @@ Highlight.install = function(Vue) {
       }
     },
     // 指令所在组件的 VNode 及其子 VNode 全部更新后调用
-    componentUpdated: function(el) {
+    componentUpdated: function (el) {
       let blocks = el.querySelectorAll("pre code");
       for (let i = 0; i < blocks.length; i++) {
+        if ($(blocks[i]).find(".line-numbers-rows").length) continue;
         hljs.highlightBlock(blocks[i]);
         blocks[i].style.maxHeight = MAX_HEIGHT;
         let lines = $(blocks[i]).text().split("\n").length - 1;

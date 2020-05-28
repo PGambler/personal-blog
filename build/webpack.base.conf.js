@@ -3,6 +3,7 @@ const path = require('path')
 const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
+const MomentLocalesPlugin = require('moment-locales-webpack-plugin')
 
 const webpack = require('webpack')
 
@@ -93,6 +94,9 @@ module.exports = {
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin('common.js'),
+    new MomentLocalesPlugin({
+      localesToKeep: ['zh-cn']
+    }), // 剥离除中/英以外的所有语言环境。
 　　new webpack.ProvidePlugin({
 　　　　jQuery: "jquery",
 　　　　$: "jquery"

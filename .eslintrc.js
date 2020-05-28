@@ -11,7 +11,7 @@ module.exports = {
   extends: [
     // https://github.com/vuejs/eslint-plugin-vue#priority-a-essential-error-prevention
     // consider switching to `plugin:vue/strongly-recommended` or `plugin:vue/recommended` for stricter rules.
-    'plugin:vue/essential', 
+    'plugin:vue/essential',
     // https://github.com/standard/standard/blob/master/docs/RULES-en.md
     'standard'
   ],
@@ -33,8 +33,6 @@ module.exports = {
     'indent': 0,
     // 允许使用tab
     'no-tabs': 0,
-    // 函数圆括号之前没有空格
-    'space-before-function-paren': [2, "never"],
     // 不要求块内空格填充格式
     'padded-blocks': 0,
     // 开发模式允许使用console
@@ -42,7 +40,7 @@ module.exports = {
     // 单行可忽略大括号，多行不可忽略
     'curly': [2, 'multi-line'],
     // 在函数括号之前需要或不允许空格
-    'space-before-function-paren': ["error", {"anonymous": "never", "named": "never", "asyncArrow": "always"}],
+    // 'space-before-function-paren': ["warn", {"anonymous": "never", "named": "never", "asyncArrow": "always"}],
     // 在文件末尾要求或禁止换行
     'eol-last': [0, "always"],
     // 强制一致使用反引号，双引号或单引号
