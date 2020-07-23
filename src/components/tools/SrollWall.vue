@@ -15,7 +15,7 @@
 
 <script>
 const images = require
-  .context("../../static/", true, /\.(png|jpg)$/)
+  .context("../../../static/", true, /\.(png|jpg)$/)
   .keys()
   .map(item => {
     return item.replace(/\.\//, "../static/");

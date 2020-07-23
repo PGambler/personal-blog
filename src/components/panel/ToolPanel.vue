@@ -9,7 +9,7 @@
   </el-tabs>
 </template>
 <script>
-import HumpLineTransfer from "@/components/tool/HumpLineTransfer";
+import HumpLineTransfer from "@/components/tools/HumpLineTransfer";
 export default {
   data () {
     return {

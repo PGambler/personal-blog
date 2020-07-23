@@ -224,7 +224,7 @@
 // import _ from "lodash";
 import Vue from "vue";
 import mavonEditor from "mavon-editor";
-import TreePanel from "@/components/TreePanel";
+import TreePanel from "@/components/panel/TreePanel";
 import Tag from "@/components/blog/Tag";
 import "mavon-editor/dist/css/index.css";
 
@@ -286,7 +286,7 @@ export default {
       this.wwidth = window.innerWidth;
       this.wheight = window.innerHeight;
     }
-    this.axios.post("/calalogManage/selectList").then(res => {
+    this.axios.post("/catalog/selectList").then(res => {
       [].push.apply(this.calalogs, res.data);
       this.calalogList = res.data;
       this.formatCalalogs();
@@ -380,7 +380,7 @@ export default {
       this.curCalalog = curCalalog;
       this.curBlog = null;
       this.essay = this.getEmtryEssay();
-      this.axios.post("/blogManage/selectList", { calalog: this.curCalalog.code }).then(res => {
+      this.axios.post("/blog/selectList", { calalog: this.curCalalog.code }).then(res => {
         this.blogList = res.data;
         this.formatBlogs();
       });
@@ -395,13 +395,13 @@ export default {
       });
     },
     saveBtnEvt: function (callback = function () { }) {
-      this.axios.post("/calalogManage/update", this.calalog).then(res => {
+      this.axios.post("/catalog/update", this.calalog).then(res => {
         callback(res.success);
         this.$message({ message: "保存成功", type: "success" });
       }).catch(callback);
     },
     saveBlogBtnEvt: function (callback = function () { }) {
-      this.axios.post("/blogManage/update", this.blog).then(res => {
+      this.axios.post("/blog/update", this.blog).then(res => {
         callback(res.success);
         if (res.success) {
           this.$message({ message: "保存成功", type: "success" });
@@ -431,7 +431,7 @@ export default {
         )[0];
         if (!calalog) return;
         that.formatCalalogs();
-        this.axios.post("/calalogManage/delete", calalog).then(res => {
+        this.axios.post("/catalog/delete", calalog).then(res => {
           if (res.success) {
             this.$message({ message: "删除成功!", type: "success" });
           } else {
@@ -453,7 +453,7 @@ export default {
         cancelButtonText: "取消",
         type: "warning"
       }).then(() => {
-        this.axios.post("/blogManage/delete", this.curBlog).then(res => {
+        this.axios.post("/blog/delete", this.curBlog).then(res => {
           if (res.success) {
             let index = this.blogList.findIndex(it => { return it == this.curBlog });
             this.blogList.splice(index, 1);

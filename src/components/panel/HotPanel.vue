@@ -70,7 +70,7 @@ export default {
         default:
           query = {};
       }
-      this.axios.post("/blogManage/selectList", query).then(res => {
+      this.axios.post("/blog/selectList", query).then(res => {
         res.data && (this[this.activeName + "Blogs"] = res.data);
       })
         .catch(res => {

@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { Loading } from 'element-ui'
 import router from '../router'
 import { VueAxios } from './axios'
 
@@ -32,14 +33,24 @@ const err = (error) => {
   return Promise.reject(error)
 }
 
+let loadingInstance = null;
+
 // request interceptor
 service.interceptors.request.use(config => {
+  loadingInstance = Loading.service({
+    target: "body",
+    lock: true,
+    text: '加载中...',
+    spinner: 'el-icon-loading',
+    background: 'rgba(0, 0, 0, 0.7)'
+  });
   return config
 }, err)
 
 // response interceptor
 service.interceptors.response.use((response) => {
   // console.log(response)
+  loadingInstance.close()
   const data = response.data
   if (response.headers['content-type'] === 'application/x-msdownload') { // 文件下载
     const url = window.URL.createObjectURL(new Blob([data]))

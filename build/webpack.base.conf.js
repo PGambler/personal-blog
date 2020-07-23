@@ -77,6 +77,10 @@ module.exports = {
           limit: 10000,
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
+      },
+      {
+        test: /\.less$/,
+        loader: "style-loader!css-loader!less-loader"
       }
     ]
   },
@@ -97,9 +101,9 @@ module.exports = {
     new MomentLocalesPlugin({
       localesToKeep: ['zh-cn']
     }), // 剥离除中/英以外的所有语言环境。
-　　new webpack.ProvidePlugin({
-　　　　jQuery: "jquery",
-　　　　$: "jquery"
-　　})
+    new webpack.ProvidePlugin({
+      jQuery: "jquery",
+      $: "jquery"
+    })
   ]
 }
