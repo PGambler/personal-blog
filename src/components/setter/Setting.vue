@@ -286,12 +286,10 @@ export default {
       this.wwidth = window.innerWidth;
       this.wheight = window.innerHeight;
     }
-    this.axios.post("/catalog/selectList").then(res => {
+    this.axios.get("/catalog").then(res => {
       [].push.apply(this.calalogs, res.data);
       this.calalogList = res.data;
       this.formatCalalogs();
-    }).catch(res => {
-      this.$message.error(res.data.msg);
     });
   },
   mounted: function () {
@@ -379,8 +377,12 @@ export default {
       if (this.curCalalog == curCalalog) return;
       this.curCalalog = curCalalog;
       this.curBlog = null;
-      this.essay = this.getEmtryEssay();
-      this.axios.post("/blog/selectList", { calalog: this.curCalalog.code }).then(res => {
+      this.essay = this.getEmptyEssay();
+      this.axios({
+        url: "/blog",
+        type: 'get',
+        params: { calalog: this.curCalalog.code }
+      }).then(res => {
         this.blogList = res.data;
         this.formatBlogs();
       });
@@ -389,26 +391,29 @@ export default {
       let curBlog = this.blogList.filter((item) => { return item._id == blog.code })[0];
       if (this.curBlog == curBlog) return;
       this.blog = this.curBlog = curBlog;
-      this.essay = this.getEmtryEssay();
-      this.axios.post("/essay/selectList", { blog: this.curBlog._id }).then(res => {
+      this.essay = this.getEmptyEssay();
+      this.axios({
+        url: "/essay",
+        type: 'get',
+        params: { blog: this.curBlog._id }
+      }).then(res => {
         if (res.data[0]) this.essay = res.data[0];
       });
     },
     saveBtnEvt: function (callback = function () { }) {
-      this.axios.post("/catalog/update", this.calalog).then(res => {
+      this.axios.put("/catalog/" + this.calalog._id, this.calalog).then(res => {
         callback(res.success);
         this.$message({ message: "保存成功", type: "success" });
       }).catch(callback);
     },
     saveBlogBtnEvt: function (callback = function () { }) {
-      this.axios.post("/blog/update", this.blog).then(res => {
+      this.axios.put("/blog/" + this.blog._id, this.blog).then(res => {
         callback(res.success);
         if (res.success) {
           this.$message({ message: "保存成功", type: "success" });
         }
-      }).catch(res => {
-        this.$message.error(res.data.msg);
-        callback(res.success);
+      }).catch(err => {
+        callback();
       });
     },
     delCalalogBtnEvt: function () {
@@ -431,7 +436,7 @@ export default {
         )[0];
         if (!calalog) return;
         that.formatCalalogs();
-        this.axios.post("/catalog/delete", calalog).then(res => {
+        this.axios.delete("/catalog/" + calalog._id).then(res => {
           if (res.success) {
             this.$message({ message: "删除成功!", type: "success" });
           } else {
@@ -453,7 +458,7 @@ export default {
         cancelButtonText: "取消",
         type: "warning"
       }).then(() => {
-        this.axios.post("/blog/delete", this.curBlog).then(res => {
+        this.axios.delete("/blog/" + this.curBlog._id).then(res => {
           if (res.success) {
             let index = this.blogList.findIndex(it => { return it == this.curBlog });
             this.blogList.splice(index, 1);
@@ -487,7 +492,7 @@ export default {
         cancelButtonText: "取消",
         type: "warning"
       }).then(() => {
-        this.axios.post("/tag/delete", this.curTag).then(res => {
+        this.axios.delete("/tag/" + this.curTag._id).then(res => {
           if (res.success) {
             let index = this.tags.findIndex(it => { return it.name == this.curTag.name });
             this.tags.splice(index, 1);
@@ -571,7 +576,7 @@ export default {
         this.$message({ message: "保存成功!", type: "success" });
       });
     },
-    getEmtryEssay: function () {
+    getEmptyEssay: function () {
       return {
         blog: "",
         content: "",

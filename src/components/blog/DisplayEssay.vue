@@ -85,15 +85,11 @@ export default {
       const index = this.blogList.findIndex((it) => { return it._id === blogId })
       this.prepBlog = this.blogList[index - 1] ? this.blogList[index - 1] : {}
       this.postBlog = this.blogList[index + 1] ? this.blogList[index + 1] : {}
-      this.axios.post("/blog/selectOne", { _id: blogId }).then(res => {
+      this.axios.get("/blog/" + blogId).then(res => {
         res.data && (this.blog = res.data);
-      }).catch(res => {
-        this.$message.error(res.data.msg);
       });
-      this.axios.post("/essay/selectOne", { blog: blogId }).then(res => {
-        res.data && (this.essay = res.data);
-      }).catch(res => {
-        this.$message.error(res.data.msg);
+      this.axios({ url: "/essay", params: { blog: blogId } }).then(res => {
+        res.data[0] && (this.essay = res.data[0]);
       });
     },
     goBack: function () {

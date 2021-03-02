@@ -17,7 +17,7 @@
               <el-button size="mini"
                          circle>
                 <el-link :underline="false"
-                         href="https://github.com/so-hentai"
+                         href="https://github.com/PGambler"
                          target="_blank">github</el-link>
               </el-button>
               <el-button size="mini"
@@ -29,7 +29,7 @@
               <el-button size="mini"
                          circle>
                 <el-link :underline="false"
-                         href="https://github.com/so-hentai/personal-blog"
+                         href="https://github.com/PGambler/personal-blog"
                          target="_blank">fork</el-link>
               </el-button>
             </p>

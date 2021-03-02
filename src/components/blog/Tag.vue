@@ -47,16 +47,11 @@ export default {
     if (this.closable !== undefined) this.cclosable = this.closable;
     if (typeof this.click == "function") this.clickEvnt = this.click;
     if (this.dbData) {
-      this.axios
-        .post("/tag/selectList")
-        .then(res => {
-          !res.data && this.$emit("change", []);
-          res.data && this.$emit("change", res.data);
-          res.data && (this.cdata = res.data);
-        })
-        .catch(res => {
-          this.$message.error(res.data.msg);
-        });
+      this.axios.get("/tag").then(res => {
+        !res.data && this.$emit("change", []);
+        res.data && this.$emit("change", res.data);
+        res.data && (this.cdata = res.data);
+      });
     }
   },
   methods: {

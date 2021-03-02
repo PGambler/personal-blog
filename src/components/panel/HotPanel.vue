@@ -70,12 +70,9 @@ export default {
         default:
           query = {};
       }
-      this.axios.post("/blog/selectList", query).then(res => {
+      this.axios.get("/blog", query).then(res => {
         res.data && (this[this.activeName + "Blogs"] = res.data);
-      })
-        .catch(res => {
-          this.$message.error(res.data.msg);
-        });
+      });
     }
   }
 };

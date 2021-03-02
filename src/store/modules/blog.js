@@ -12,14 +12,14 @@ export default {
   },
   actions: {
     update_blogList ({ commit }, query) {
-      axios.post("/blog/selectList", query).then(res => {
+      axios({ url: "/blog", params: query }).then(res => {
         const result = res.data || []
         if (!result.length) return Promise.resolve()
         commit("update_blogList", result)
       }).catch(res => {
         Notification.error({
           title: '错误',
-          message: JSON.stringify(res.data.msg)
+          message: JSON.stringify(res.message)
         });
         Promise.resolve()
       });

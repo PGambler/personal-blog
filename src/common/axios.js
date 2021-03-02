@@ -20,11 +20,6 @@ const VueAxios = {
         get: function get () {
           return instance
         }
-      },
-      $http: {
-        get: function get () {
-          return instance
-        }
       }
     })
   }

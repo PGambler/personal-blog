@@ -77,7 +77,7 @@ export default {
   watch: {
     essay: {
       handler (nv, ov) {
-        this.axios.post("/comment/selectList", { essay: nv }).then(res => {
+        this.axios({ url: "/comment", params: { essay: nv } }).then(res => {
           this.comms = res.data || []
         });
       },
@@ -101,7 +101,7 @@ export default {
       const comm = { ...this.newComm }
       comm.essay = this.essay
       comm.createdAt = this.$moment().format("YYYY-MM-DD HH:mm:ss").toString()
-      this.axios.post("/comment/addOrUpdate", comm).then(res => {
+      this.axios.post("/comment", comm).then(res => {
         this.$message({ message: "保存成功!", type: "success" });
         this.newComm.author = ""
         this.newComm.content = ""
